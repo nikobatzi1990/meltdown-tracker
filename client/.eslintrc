@@ -3,7 +3,7 @@
       "browser": true,
       "es2021": true
     },
-    "extends": ["airbnb", "prettier"],
+    "extends": ["airbnb", "prettier", "plugin:react/recommended"],
     "plugins": ["prettier"],
     "parserOptions": {
     "sourceType": "module",
