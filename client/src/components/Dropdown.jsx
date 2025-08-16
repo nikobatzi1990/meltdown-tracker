@@ -36,5 +36,13 @@ export default function Dropdown() {
     handleOptions();
   }, [tags]);
 
-  return <Select options={options} />;
+  return (
+    <Select
+      defaultValue="Choose Tags"
+      options={options}
+      isMulti
+      className="basic-multi-select"
+      classNamePrefix="select"
+    />
+  );
 }

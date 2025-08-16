@@ -100,15 +100,15 @@ function Submission() {
             onChange={handleChange}
           />
 
-          <Input
+          <Dropdown />
+
+          {/* <Input
             className="border-1 border-solid rounded-md p-1 min-w-80"
             placeholder="Tag"
             name="tagName"
             value={form.tagName}
             onChange={handleChange}
-          />
-
-          <Dropdown />
+          /> */}
         </div>
 
         <div className="flex gap-10">
