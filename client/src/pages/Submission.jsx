@@ -10,6 +10,7 @@ import TimeOfDay from "../components/TimeOfDay";
 import IntensityLevel from "../components/IntensityLevel";
 import SubmitButton from "../components/SubmitButton";
 import ExclamationPoint from "../components/ExclamationPoint";
+import Dropdown from "../components/Dropdown";
 
 function Submission() {
   const { user } = UserAuth();
@@ -106,6 +107,8 @@ function Submission() {
             value={form.tagName}
             onChange={handleChange}
           />
+
+          <Dropdown />
         </div>
 
         <div className="flex gap-10">
