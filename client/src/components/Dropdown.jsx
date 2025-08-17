@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import { UserAuth } from "../context/AuthContext";
 
 export default function Dropdown() {
@@ -37,11 +37,10 @@ export default function Dropdown() {
   }, [tags]);
 
   return (
-    <Select
-      defaultValue="Choose Tags"
+    <CreatableSelect
       options={options}
       isMulti
-      className="basic-multi-select"
+      className="basic-multi-select w-95"
       classNamePrefix="select"
     />
   );
