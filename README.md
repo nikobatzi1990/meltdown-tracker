@@ -1,7 +1,5 @@
 # Meltdown Tracker
 
-UPDATE 05/13/25: Currently updating the page styles to improve the overall look of the application.
-
 ## Table of Contents
 <details>
 <summary>Click here to expand</summary>
