@@ -19,7 +19,7 @@ function Submission() {
     uid: user.uid,
     title: "",
     body: "",
-    tagName: "",
+    tags: [],
     timesUsed: 1,
     timeOfDay: "Morning",
     intensity: "1",

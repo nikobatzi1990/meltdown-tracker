@@ -17,23 +17,12 @@ export default function Dropdown() {
     }
   };
 
-  const handleOptions = () => {
-    const result = [];
-    tags.forEach((tag) => {
-      const option = {};
-      option.value = tag;
-      option.label = tag;
-      result.push(option);
-    });
-    setOptions(result);
-  };
-
   useEffect(() => {
     handleTags();
   }, [user.uid]);
 
   useEffect(() => {
-    handleOptions();
+    setOptions(tags.map((tag) => ({ value: tag, label: tag })));
   }, [tags]);
 
   return (
