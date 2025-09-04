@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import CreatableSelect from "react-select/creatable";
 import { UserAuth } from "../context/AuthContext";
 
-export default function Dropdown() {
+export default function Dropdown(props) {
+  const { onChange, selected } = props;
   const { user } = UserAuth();
   const [tags, setTags] = useState([]);
   const [options, setOptions] = useState([]);
@@ -33,6 +35,18 @@ export default function Dropdown() {
       classNamePrefix="select"
       placeholder="Choose tag(s)"
       closeMenuOnSelect={false}
+      onChange={onChange}
+      value={selected}
     />
   );
 }
+
+Dropdown.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  selected: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};

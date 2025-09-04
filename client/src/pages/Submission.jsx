@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -15,6 +15,7 @@ import Dropdown from "../components/Dropdown";
 function Submission() {
   const { user } = UserAuth();
   const navigate = useNavigate();
+  const [selected, setSelected] = useState([]);
   const [form, setForm] = useState({
     uid: user.uid,
     title: "",
@@ -35,35 +36,28 @@ function Submission() {
     setForm((prev) => ({ ...prev, flagged: !prev.flagged }));
   };
 
-  const handleNewTag = async () => {
-    if (form.tagName) {
-      try {
-        // Check if the tag already exists
-        const response = await axios.get(`/api/${user.uid}/tags`);
-        // If tag exists, update timesUsed
-        if (response.data.includes(form.tagName)) {
-          const previousTimesUsed = await axios.get(
-            `/api/tags/${form.tagName}/timesUsed`,
-          );
-          form.timesUsed = Number(previousTimesUsed.data) + 1;
-          // If tag does not exist, create a new one
-        } else {
-          await axios.post("/api/tags/newTag", {
-            tagName: form.tagName,
-            uid: user.uid,
-            timesUsed: form.timesUsed,
-          });
-        }
-      } catch (err) {
-        console.error("🐷: ", err);
-      }
-    }
+  const handleTagSelection = (option) => {
+    setSelected(option);
+    console.log("Selected options:", option);
   };
+
+  useEffect(() => {
+    const tagsArray = selected.map((tag) => tag.value);
+    setForm((prev) => ({
+      ...prev,
+      tags: tagsArray,
+    }));
+  }, [selected]);
+
+  // const handleNewTag = async (tag) => {
+
+  // };
 
   const handleSubmission = async (e) => {
     e.preventDefault();
     try {
-      await handleNewTag();
+      console.log("Form: ", form);
+      // await handleNewTag();
       await axios.post("/api/entries/submission", form);
       console.log("Form submitted successfully");
     } catch (err) {
@@ -100,7 +94,7 @@ function Submission() {
             onChange={handleChange}
           />
 
-          <Dropdown />
+          <Dropdown onChange={handleTagSelection} selected={selected} />
         </div>
 
         <div className="flex gap-10">
