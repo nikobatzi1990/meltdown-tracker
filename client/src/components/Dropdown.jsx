@@ -31,6 +31,8 @@ export default function Dropdown() {
       isMulti
       className="basic-multi-select w-95"
       classNamePrefix="select"
+      placeholder="Choose tag(s)"
+      closeMenuOnSelect={false}
     />
   );
 }
